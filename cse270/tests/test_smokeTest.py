@@ -17,7 +17,10 @@ class TestSmokeTest():
     options.add_argument("--headless=new")
     self.driver = webdriver.Chrome(options=options)
     self.vars = {}
-  
+
+  def teardown_method(self, method):
+    self.driver.quit()
+      
   def test_adminpage(self):
     self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.set_window_size(1382, 736)
